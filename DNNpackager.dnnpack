@@ -1,0 +1,27 @@
+<root>
+	<version>1.4.1</version>
+  <websitedestrelpath>\DesktopModules\NBright\OS_40F_PostNL</websitedestrelpath>
+  <websitedestbinrelpath>\bin</websitedestbinrelpath>
+	<!-- Include only files that match the regular expression -->
+  <regexpr>(\.cshtml|\.html|\.resx|\.dnn|\.png|\.jpg|\.gif|\.css|\.svg|\.js|\.xml|\.txt|\.md|\.aspx|\.ascx|\.ashx|\.woff|\.woff2|\.ttf|\.rules)$</regexpr>
+  <directory include='false'>
+		<!-- All paths should be from the source root (project root) -->
+    <value>\.git</value>
+    <value>\.vs</value>
+    <value>\bin</value>
+    <value>\obj</value>
+    <value>\Components</value>
+    <value>\Installation</value>
+    <value>\packages</value>
+    <value>\render</value>
+    <value>\_external</value>
+  </directory>
+  <file include='false'>
+  </file>
+  <file include='true'>
+    <value>\Installation\pluginOS_40F_PostNL.xml</value>
+  </file>
+	<assembly>
+		<value>OS_40F_PostNL.dll</value>
+	</assembly>  
+</root>

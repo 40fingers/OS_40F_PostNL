@@ -1,0 +1,65 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightCore.common
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_40F_PostNL/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+var info = (NBrightInfo)Model.List.First();
+}
+
+<div class="form-horizontal dnnForm">
+    <input id="itemid" type="hidden" value="@info.ItemID" />
+    <input id="uilang" type="hidden" value="@Model.Lang" />
+    <input id="nextlang" type="hidden" value="@Model.Lang" />
+    <!-- ctrl name required to pass to the settingfield.cshtml template, so it can link the order to the payment method -->
+    <input id="ctrl" type="hidden" update="save" value="OS_40F_PostNL" />
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>@ResourceKey("Payment.OS_40F_PostNLsettings")</h3>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">PostNL Api Key</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/key", "class='form-control'", "999")
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>@ResourceKey("Payment.processoptions")</h3>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("General.DebugMode")</label>
+            <div class="col-sm-5">
+                <div class="dnnFormItem">
+                    @CheckBox(info, "genxml/checkbox/debugmode", ResourceKey("Settings.debugmode", info.Lang).ToString())
+                </div>
+            </div>
+        </div>
+        @if (info.GetXmlPropertyBool("genxml/checkbox/debugmode"))
+        {
+            <hr />
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-3">
+                    @info.GetXmlProperty("genxml/debugmsg")
+                </div>
+            </div>
+        }
+    </div>
+</div>
