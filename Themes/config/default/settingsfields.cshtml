@@ -25,13 +25,31 @@ var info = (NBrightInfo)Model.List.First();
         <div class="form-group">
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
-                <h3>@ResourceKey("Payment.OS_40F_PostNLsettings")</h3>
+                <h3>@ResourceKey("Settings.OS_40F_PostNLsettings")</h3>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">PostNL Api Key</label>
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.PostNLApiKey")</label>
             <div class="col-sm-3">
-                @TextBox(info, "genxml/textbox/key", "class='form-control'", "999")
+                @TextBox(info, "genxml/textbox/key", "class='form-control'", "999", true)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.PostNLCustomerCode")</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/customercode", "class='form-control'", "")
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.PostNLCustomerNumber")</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/customernumber", "class='form-control'", "")
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.PostNLCollectionLocation")</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/collectionlocation", "class='form-control'", "")
             </div>
         </div>
     </div>
@@ -40,11 +58,35 @@ var info = (NBrightInfo)Model.List.First();
         <div class="form-group">
             <div class="col-sm-2"></div>
             <div class="col-sm-5">
-                <h3>@ResourceKey("Payment.processoptions")</h3>
+                <h3>@ResourceKey("Settings.processoptions")</h3>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.CreateLabelOnPaymentLabel")</label>
+            <div class="col-sm-3">
+                @CheckBox(info, "genxml/checkbox/createlabelonpayment", ResourceKey("Settings.CreateLabelOnPayment", info.Lang).ToString())
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.SendLabelOnStatusShippedLabel")</label>
+            <div class="col-sm-3">
+                @CheckBox(info, "genxml/checkbox/sendlabelonstatusshipped", ResourceKey("Settings.SendLabelOnStatusShipped", info.Lang).ToString())
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Settings.EmailForLabel")</label>
+            <div class="col-sm-3">
+                @TextBox(info, "genxml/textbox/emailforlabel", "class='form-control'", "")
+                <small class="form-text text-muted">@ResourceKey("Settings.EmptyForMerchantAddress")</small>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">@ResourceKey("General.DebugMode")</label>
+            <div class="col-sm-5">
+                <div class="dnnFormItem">
+                    @CheckBox(info, "genxml/checkbox/useproduction", ResourceKey("Settings.UsePostNLProduction", info.Lang).ToString())
+                </div>
+            </div>
             <div class="col-sm-5">
                 <div class="dnnFormItem">
                     @CheckBox(info, "genxml/checkbox/debugmode", ResourceKey("Settings.debugmode", info.Lang).ToString())
