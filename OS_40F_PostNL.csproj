@@ -85,6 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AjaxProvider.cs" />
+    <Compile Include="Components\CreateShipmentModel.cs" />
+    <Compile Include="Components\CreateShipmentResponse.cs" />
     <Compile Include="Components\EventProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\ProviderUtils.cs" />

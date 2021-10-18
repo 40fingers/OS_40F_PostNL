@@ -117,4 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateLabelOnPayment.Text" xml:space="preserve">
+    <value>Check to automatically create a PostNL label on payment</value>
+  </data>
+  <data name="CreateLabelOnPaymentLabel.Text" xml:space="preserve">
+    <value>Create label on payment</value>
+  </data>
+  <data name="EmailForLabel.Text" xml:space="preserve">
+    <value>Recipient email for label</value>
+  </data>
+  <data name="EmptyForMerchantAddress.Text" xml:space="preserve">
+    <value>Leave empty to use merchant address</value>
+  </data>
+  <data name="OS_40F_PostNLsettings.Text" xml:space="preserve">
+    <value>PostNL Settings</value>
+  </data>
+  <data name="PostNLApiKey.Text" xml:space="preserve">
+    <value>PostNL API Key</value>
+  </data>
+  <data name="PostNLCollectionLocation.Text" xml:space="preserve">
+    <value>Collection location</value>
+  </data>
+  <data name="PostNLCustomerCode.Text" xml:space="preserve">
+    <value>Customer code</value>
+  </data>
+  <data name="PostNLCustomerNumber.Text" xml:space="preserve">
+    <value>Customer number</value>
+  </data>
+  <data name="processoptions.Text" xml:space="preserve">
+    <value>Process Options</value>
+  </data>
+  <data name="SendLabelOnStatusShipped.Text" xml:space="preserve">
+    <value>Check to have the label be sent whenever the order status is set to shipped.</value>
+  </data>
+  <data name="SendLabelOnStatusShippedLabel.Text" xml:space="preserve">
+    <value>Send label when the status is set to shipped</value>
+  </data>
+  <data name="UsePostNLProduction.Text" xml:space="preserve">
+    <value>Use production</value>
+  </data>
 </root>
