@@ -57,7 +57,14 @@ namespace OS_40F_PostNL
 
         public override NBrightInfo AfterOrderStatusChange(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            // TODO:
+            // if setting is true
+            // - check if status set to SHIPPED
+            // - if so, create new label
+            // - send email with label
+            var info = ProviderUtils.GetProviderSettings();
+
+            return nbrightInfo;
         }
 
         public override NBrightInfo BeforePaymentOK(NBrightInfo nbrightInfo)
@@ -67,7 +74,13 @@ namespace OS_40F_PostNL
 
         public override NBrightInfo AfterPaymentOK(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            // TODO: Implement
+            // if setting is true
+            // - creation of the label
+            // - send email with label
+            var info = ProviderUtils.GetProviderSettings();
+
+            return nbrightInfo;
         }
 
         public override NBrightInfo BeforePaymentFail(NBrightInfo nbrightInfo)
