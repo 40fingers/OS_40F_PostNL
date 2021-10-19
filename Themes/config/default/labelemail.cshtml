@@ -1,0 +1,22 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightCore.common
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_40F_PostNL/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+@{
+    var info = (NBrightInfo)Model.List.First();
+}
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+</head>
+<body>
+<p>@ResourceKey("Settings.EmailText") <span>@info.GetXmlProperty("genxml/ordernumber")</span></p>
+<p>Barcode: <span>@info.GetXmlProperty("genxml/postnllabel/barcode")</span></p>
+</body>
+</html>

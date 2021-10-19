@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NBrightDNN;
+using Nevoweb.DNN.NBrightBuy.Components;
 
 namespace OS_40F_PostNL
 {
@@ -12,95 +13,90 @@ namespace OS_40F_PostNL
 
         public override NBrightInfo ValidateCartBefore(NBrightInfo cartInfo)
         {
-            throw new NotImplementedException();
+            return cartInfo;
         }
 
         public override NBrightInfo ValidateCartAfter(NBrightInfo cartInfo)
         {
-            throw new NotImplementedException();
+            return cartInfo;
         }
 
         public override NBrightInfo ValidateCartItemBefore(NBrightInfo cartItemInfo)
         {
-            throw new NotImplementedException();
+            return cartItemInfo;
         }
 
         public override NBrightInfo ValidateCartItemAfter(NBrightInfo cartItemInfo)
         {
-            throw new NotImplementedException();
+            return cartItemInfo;
         }
 
         public override NBrightInfo AfterCartSave(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterCategorySave(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterProductSave(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterSavePurchaseData(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo BeforeOrderStatusChange(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterOrderStatusChange(NBrightInfo nbrightInfo)
         {
-            // TODO:
-            // if setting is true
-            // - check if status set to SHIPPED
-            // - if so, create new label
-            // - send email with label
-            var info = ProviderUtils.GetProviderSettings();
-
+            var orderstatus = nbrightInfo.GetXmlPropertyInt("genxml/dropdownlist/orderstatus");
+            if ((ProviderUtils.CreateLabelOnShipped() && orderstatus == (int)OrderStatus.Shipped)
+                || (ProviderUtils.CreateLabelOnPaymentOK() && orderstatus == (int)OrderStatus.PaymentOk))
+            {
+                var orderInfoWithLabel = ProviderUtils.CreateLabel(nbrightInfo);
+                ProviderUtils.SendMailWithLabel(orderInfoWithLabel);
+                return orderInfoWithLabel;
+            }
             return nbrightInfo;
         }
 
         public override NBrightInfo BeforePaymentOK(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterPaymentOK(NBrightInfo nbrightInfo)
         {
-            // TODO: Implement
-            // if setting is true
-            // - creation of the label
-            // - send email with label
-            var info = ProviderUtils.GetProviderSettings();
-
             return nbrightInfo;
         }
 
         public override NBrightInfo BeforePaymentFail(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterPaymentFail(NBrightInfo nbrightInfo)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo BeforeSendEmail(NBrightInfo nbrightInfo, string emailsubjectrexkey)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
 
         public override NBrightInfo AfterSendEmail(NBrightInfo nbrightInfo, string emailsubjectrexkey)
         {
-            throw new NotImplementedException();
+            return nbrightInfo;
         }
     }
 }

@@ -64,9 +64,8 @@
       <HintPath>_external\NBrightDNN.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RazorEngine, Version=3.7.7.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -107,6 +106,7 @@
     <None Include="OS_40F_PostNL.dnn" />
     <None Include="packages.config" />
     <None Include="README.md" />
+    <None Include="Themes\config\default\labelemail.cshtml" />
     <None Include="Themes\config\default\settingsfields.cshtml" />
     <None Include="Themes\config\default\settings.cshtml" />
   </ItemGroup>
