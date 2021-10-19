@@ -126,6 +126,9 @@
   <data name="EmailForLabel.Text" xml:space="preserve">
     <value>Recipient email for label</value>
   </data>
+  <data name="EmailText.Text" xml:space="preserve">
+    <value>Please find attached the label for order number</value>
+  </data>
   <data name="EmptyForMerchantAddress.Text" xml:space="preserve">
     <value>Leave empty to use merchant address</value>
   </data>
