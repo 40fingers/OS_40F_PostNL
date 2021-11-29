@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="OS_40F_PostNL" type="Module" version="0.0.1">
+		<package name="OS_40F_PostNL" type="Module" version="1.0.0">
 			<friendlyName>OS_40F_PostNL</friendlyName>
 			<description>PostNL integration for Open-Store by 40Fingers</description>
       <iconFile>~/DesktopModules/NBright/NBrightBuy/icon-openstore.png</iconFile>
@@ -32,8 +32,8 @@
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.</license>
 			<releaseNotes>
-			v00.00.01
-			- unfinished version(s)
+			v01.00.00
+			- first version
 			</releaseNotes>
       <dependencies>
         <dependency type="CoreVersion">09.03.02</dependency>
@@ -63,7 +63,7 @@
 			<file>
 				<path></path>
 				<name>plugin_OS_40F_PostNL.xml</name>
-				<sourceFileName>plugin_OS_40F_PostNL.xml</sourceFileName>
+				<sourceFileName>pluginOS_40F_PostNL.xml</sourceFileName>
 			</file>
 		</files>
 	</component>

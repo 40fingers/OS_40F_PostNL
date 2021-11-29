@@ -4,7 +4,7 @@
   </hidden>
   <textbox>
     <ctrl update="save">os_40f_postnl</ctrl>
-    <name update="save">PostNL Integration provider</name>
+    <name update="save">PostNL Integration</name>
     <icon update="save" />
     <group update="save">Admin</group>
     <path update="save">/DesktopModules/NBright/OS_40F_PostNL/Settings.ascx</path>
@@ -21,6 +21,7 @@
       <chk value="False" data="Manager">Manager</chk>
       <chk value="False" data="Editor">Editor</chk>
       <chk value="False" data="ClientEditor">ClientEditor</chk>
+      <chk value="False" data="Sales">Sales</chk>
     </securityroles>
   </checkboxlist>
   <radiobuttonlist />
@@ -34,6 +35,7 @@
       </textbox>
       <checkbox>
         <active>True</active>
+        <default>False</default>
       </checkbox>
       <dropdownlist>
         <providertype>06</providertype>
@@ -50,6 +52,7 @@
       </textbox>
       <checkbox>
         <active>True</active>
+        <default>False</default>
       </checkbox>
       <dropdownlist>
         <providertype>12</providertype>

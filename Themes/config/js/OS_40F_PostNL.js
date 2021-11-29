@@ -4,7 +4,7 @@
         $('.processing').show();
         $('.actionbuttonwrapper').hide();
         // lower case cmd must match ajax provider ref.
-        nbxget('OS_40F_PostNL_savesettings', '.OS_40F_PostNLdata', '.OS_40F_PostNLreturnmsg');
+        nbxget('os_40f_postnl_savesettings', '.OS_40F_PostNLdata', '.OS_40F_PostNLreturnmsg');
     });
 
     $('.selectlang').unbind("click");
@@ -14,7 +14,7 @@
         $('.processing').show();
         $("#nextlang").val($(this).attr("editlang"));
         // lower case cmd must match ajax provider ref.
-        nbxget('OS_40F_PostNL_selectlang', '.OS_40F_PostNLdata', '.OS_40F_PostNLdata');
+        nbxget('os_40f_postnl_selectlang', '.OS_40F_PostNLdata', '.OS_40F_PostNLdata');
     });
 
     $(document).on("nbxgetcompleted", OS_40F_PostNL_nbxgetCompleted); // assign a completed event for the ajax calls
@@ -25,7 +25,7 @@
         $('.actionbuttonwrapper').show();
         $('.editlanguage').show();
 
-        if (e.cmd == 'OS_40F_PostNL_selectlang') {
+        if (e.cmd == 'os_40f_postnl_selectlang') {
                         
         }
     };
