@@ -22,6 +22,7 @@ using RazorEngine;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
 using Encoding = System.Text.Encoding;
+using Logger = Nevoweb.DNN.NBrightBuy.Components.Logger;
 
 namespace OS_40F_PostNL
 {
@@ -53,6 +54,7 @@ namespace OS_40F_PostNL
 
         public static NBrightInfo CreateLabel(NBrightInfo orderInfo)
         {
+            Logger.Debug($"CreateLabel for order itemid {orderInfo.ItemID}");
             var orderData = new OrderData(orderInfo.ItemID);
             var osSettings = new StoreSettings(orderInfo.PortalId);
             var prvSettings = GetProviderSettings();
@@ -96,6 +98,8 @@ namespace OS_40F_PostNL
 
             var baseurl = $"https://{ApiHostname(prvSettings.GetXmlPropertyBool("genxml/checkbox/useproduction"))}/v1/shipment";
 
+            Logger.Debug($"requesting label from {baseurl}, with payload\r\n{JsonConvert.SerializeObject(postdata, Formatting.None)}");
+
             var webReq = (HttpWebRequest)WebRequest.Create(baseurl);
             webReq.Method = "POST";
             webReq.Headers.Add("apikey", prvSettings.GetXmlProperty("genxml/textbox/key", true));
@@ -109,9 +113,13 @@ namespace OS_40F_PostNL
             }
             catch (WebException e)
             {
+                Logger.Error($"CreateLabel Exception for {orderInfo.ItemID}", e);
+                DotNetNuke.Services.Exceptions.Exceptions.LogException(e);
                 webResp = (HttpWebResponse)e.Response;
             }
             var respText = webResp?.GetResponseStream().ReadAllText() ?? $"{{ \"Errors\": \"Response was empty, with status {webResp.StatusCode}\"}}";
+            Logger.Debug($"PostNL Response: {respText}");
+
             var resp = JObject.Parse(respText);
 
             if (resp["Errors"] != null)
@@ -122,7 +130,7 @@ namespace OS_40F_PostNL
                 orderData.Save();
                 return orderData.PurchaseInfo;
             }
-            // we only request one label, so no need to process more in th eresponse either
+            // we only request one label, so no need to process more in the response either
             var respModel = new CreateShipmentResponse();
             if (resp["ResponseShipments"] != null)
             {
@@ -133,6 +141,7 @@ namespace OS_40F_PostNL
                 orderData.GetInfo().SetXmlProperty("genxml/postnllabel/labeltype", respShipment["Labeltype"]?.Value<string>() ?? "");
                 orderData.GetInfo().SetXmlProperty("genxml/postnllabel/outputtype", respShipment["OutputType"]?.Value<string>() ?? "");
                 orderData.Save();
+                Logger.Debug($"PostNL Label saved to order");
             }
 
             return orderData.GetInfo();
@@ -140,6 +149,8 @@ namespace OS_40F_PostNL
 
         public static void SendMailWithLabel(NBrightInfo orderInfo)
         {
+            Logger.Debug($"SendMailWithLabel for order itemid {orderInfo.ItemID}");
+
             var orderData = new OrderData(orderInfo.ItemID);
 
             var portal = new PortalSettings(orderInfo.PortalId);
@@ -184,6 +195,7 @@ namespace OS_40F_PostNL
             }
             catch(Exception e)
             {
+                Logger.Debug(e.Message);
             }
         }
 
