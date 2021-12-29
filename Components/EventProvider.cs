@@ -58,13 +58,22 @@ namespace OS_40F_PostNL
 
         public override NBrightInfo AfterOrderStatusChange(NBrightInfo nbrightInfo)
         {
-            var orderstatus = nbrightInfo.GetXmlPropertyInt("genxml/dropdownlist/orderstatus");
-            if ((ProviderUtils.CreateLabelOnShipped() && orderstatus == (int)OrderStatus.Shipped)
-                || (ProviderUtils.CreateLabelOnPaymentOK() && orderstatus == (int)OrderStatus.PaymentOk))
+            try
             {
-                var orderInfoWithLabel = ProviderUtils.CreateLabel(nbrightInfo);
-                ProviderUtils.SendMailWithLabel(orderInfoWithLabel);
-                return orderInfoWithLabel;
+                Logger.Debug($"OS_40F_PostNL AfterOrderStatusChange triggered. CreateLabelOnShipped={ProviderUtils.CreateLabelOnShipped()}, CreateLabelOnPaymentOK={ProviderUtils.CreateLabelOnPaymentOK()}.");
+                var orderstatus = nbrightInfo.GetXmlPropertyInt("genxml/dropdownlist/orderstatus");
+                Logger.Debug($"Order ItemId={nbrightInfo.ItemID}, OrderStatus={orderstatus}.");
+                if ((ProviderUtils.CreateLabelOnShipped() && orderstatus == (int)OrderStatus.Shipped)
+                    || (ProviderUtils.CreateLabelOnPaymentOK() && orderstatus == (int)OrderStatus.PaymentOk))
+                {
+                    var orderInfoWithLabel = ProviderUtils.CreateLabel(nbrightInfo);
+                    ProviderUtils.SendMailWithLabel(orderInfoWithLabel);
+                    return orderInfoWithLabel;
+                }
+            }
+            catch (Exception e)
+            {
+                DotNetNuke.Services.Exceptions.Exceptions.LogException(e);
             }
             return nbrightInfo;
         }
