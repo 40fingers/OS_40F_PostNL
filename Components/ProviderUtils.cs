@@ -171,9 +171,30 @@ namespace OS_40F_PostNL
             if (nbRazor.Lang == "") nbRazor.Lang = Utils.GetCurrentCulture();
             var templData = templCtrl.GetTemplateData(nbRazor.TemplateName, nbRazor.Lang);
 
+            string ordername = "";
+
+            if (!string.IsNullOrEmpty(orderInfo.GetXmlProperty("genxml/shipaddress/genxml/textbox/lastname")))
+            {
+                ordername = $"{orderInfo.GetXmlProperty("genxml/shipaddress/genxml/textbox/firstname")} {orderInfo.GetXmlProperty("genxml/shipaddress/genxml/textbox/lastname")}".Trim();
+            }
+            else if (!string.IsNullOrEmpty(orderInfo.GetXmlProperty("genxml/billaddress/genxml/textbox/lastname")))
+            {
+                ordername = $"{orderInfo.GetXmlProperty("genxml/billaddress/genxml/textbox/firstname")} {orderInfo.GetXmlProperty("genxml/billaddress/genxml/textbox/lastname")}".Trim();
+            }
+            else if (!string.IsNullOrEmpty(orderInfo.GetXmlProperty("genxml/shipaddress/genxml/textbox/company")))
+            {
+                ordername =orderInfo.GetXmlProperty("genxml/shipaddress/genxml/textbox/company");
+            }
+            else if (!string.IsNullOrEmpty(orderInfo.GetXmlProperty("genxml/billaddress/genxml/textbox/company")))
+            {
+                ordername = orderInfo.GetXmlProperty("genxml/billaddress/genxml/textbox/company");
+            }
+
+            if (!string.IsNullOrEmpty(ordername)) ordername = $" - {ordername}";
+
             var ordernumber = orderInfo.GetXmlProperty("genxml/ordernumber");
             var body = RazorRender(osSettings, nbRazor, templData, "");
-            var subject = $"PostNL verzendlabel voor {ordernumber}";
+            var subject = $"PostNL verzendlabel voor {ordernumber}{ordername}";
             var to = prvSettings.GetXmlProperty("genxml/textbox/emailforlabel");
             if(string.IsNullOrEmpty(to)) to = osSettings.Get(StoreSettingKeys.manageremail);
             if(string.IsNullOrEmpty(to)) to = osSettings.Get(StoreSettingKeys.adminemail);
