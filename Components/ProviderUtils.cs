@@ -52,7 +52,7 @@ namespace OS_40F_PostNL
             return info.GetXmlPropertyBool("genxml/checkbox/sendlabelonstatusshipped");
         }
 
-        public static NBrightInfo CreateLabel(NBrightInfo orderInfo)
+        public static NBrightInfo CreateLabel(NBrightInfo orderInfo, out bool success)
         {
             Logger.Debug($"CreateLabel for order itemid {orderInfo.ItemID}");
             var orderData = new OrderData(orderInfo.ItemID);
@@ -128,6 +128,7 @@ namespace OS_40F_PostNL
                 Logger.Error(msg);
                 orderData.AddAuditMessage(msg, "postnl", UserController.Instance.GetCurrentUserInfo()?.Username, bool.TrueString);
                 orderData.Save();
+                success = false;
                 return orderData.PurchaseInfo;
             }
             // we only request one label, so no need to process more in the response either
@@ -144,6 +145,7 @@ namespace OS_40F_PostNL
                 Logger.Debug($"PostNL Label saved to order");
             }
 
+            success = true;
             return orderData.GetInfo();
         }
 

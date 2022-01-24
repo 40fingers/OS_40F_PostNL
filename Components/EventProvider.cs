@@ -66,8 +66,9 @@ namespace OS_40F_PostNL
                 if ((ProviderUtils.CreateLabelOnShipped() && orderstatus == (int)OrderStatus.Shipped)
                     || (ProviderUtils.CreateLabelOnPaymentOK() && orderstatus == (int)OrderStatus.PaymentOk))
                 {
-                    var orderInfoWithLabel = ProviderUtils.CreateLabel(nbrightInfo);
-                    ProviderUtils.SendMailWithLabel(orderInfoWithLabel);
+                    bool proceed = false;
+                    var orderInfoWithLabel = ProviderUtils.CreateLabel(nbrightInfo, out proceed);
+                    if(proceed) ProviderUtils.SendMailWithLabel(orderInfoWithLabel);
                     return orderInfoWithLabel;
                 }
             }
